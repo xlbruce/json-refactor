@@ -15,6 +15,9 @@ logging.basicConfig(filename='app.log', filemode='w', level=logging.DEBUG)
 logging.debug('Executing in debug mode')
 logging.debug('path: {}'.format(path))
 
+for root, dirs, files in os.walk(path, topdown=True):
+    logging.debug('Ignoring useless directories')
+    dirs = [d for d in dirs if d not in '.git']
 for root, dirs, files in os.walk(path):
     logging.debug('root directory: {}'.format(root))
     for file in files:
