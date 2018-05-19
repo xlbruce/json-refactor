@@ -29,7 +29,7 @@ for root, dirs, files in os.walk(path):
             try:
                 real_content = next(iter(obj['content']))
                 logging.debug('Parsed successfully')
-            except StopIteration:
+            except (StopIteration, KeyError):
                 logging.info('{} doesn\'t appear to be a valid file'.format(file))
                 continue
 
@@ -41,7 +41,8 @@ for root, dirs, files in os.walk(path):
             obj['content'].pop(real_content, None)
 
 
-        with open('target.json', 'w+') as f:
+        with open(filename, 'w+') as f:
+            logging.debug('Updating file [{}]'.format(file))
             f.write(json.dumps(obj, indent=4))
             f.flush()
             f.close()
