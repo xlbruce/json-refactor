@@ -38,7 +38,11 @@ for root, dirs, files in os.walk(path):
 
             for key, value in obj['content'][real_content].items():
                 logging.debug('Adding ["{}":"{}"] to "content"'.format(key, value))
-                obj['content'][key] = value
+                try:
+                    obj['content'][key] = value
+                except KeyError:
+                    logging.info('File [{}] is possibly already in right format')
+                    continue
 
             logging.debug('Removing content[{}]'.format(real_content))
             obj['content'].pop(real_content, None)
