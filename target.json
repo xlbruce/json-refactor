@@ -1,0 +1,9 @@
+{
+    "content": {
+        "target": {
+            "body": "<use-external-html>",
+            "subject": "<template-subject>"
+        }
+    },
+    "use-case": "test"
+}
