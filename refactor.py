@@ -3,6 +3,12 @@ import logging
 import sys
 import os
 
+try:
+    path_to_apply = sys.argv[1]
+except IndexError:
+    print("Usage: python {} {}".format(sys.argv[0], '/path/to/files'))
+    sys.exit(1)
+
 path = os.path.join(os.path.abspath(sys.argv[1]))
 logging.basicConfig(filename='app.log', filemode='w', level=logging.DEBUG)
 
